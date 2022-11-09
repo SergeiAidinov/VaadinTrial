@@ -31,18 +31,18 @@ public class MainView extends VerticalLayout {
     @PostConstruct
     private void initialize() {
 
-        List<FrenchLettersUtils.letters> lettersList = frenchLettersUtils.getAllLetters().stream().collect(Collectors.toList());
-        Iterator<FrenchLettersUtils.letters> iterator = lettersList.iterator();
+        List<FrenchLettersUtils.Letters> lettersList = frenchLettersUtils.getAllLetters().stream().collect(Collectors.toList());
+        Iterator<FrenchLettersUtils.Letters> iterator = lettersList.iterator();
 
         while (iterator.hasNext()) {
             HorizontalLayout horizontalLayout = new HorizontalLayout();
             horizontalLayout.setWidth(LAYOUT_WIDTH);
             for (int i = 0; i < 3; i++) {
                 if (iterator.hasNext()) {
-                    FrenchLettersUtils.letters letter = iterator.next();
-                    Button nextButton = new Button(frenchLettersUtils.getSymbol(letter));
+                    FrenchLettersUtils.Letters letter = iterator.next();
+                    Button nextButton = new Button(String.valueOf(letter.getSymbol()));
                     nextButton.addClickListener(clickEvent ->
-                            answerField.setValue(answerField.getValue() + frenchLettersUtils.getSymbol(letter)));
+                            answerField.setValue(answerField.getValue() + letter.getSymbol()));
                     horizontalLayout.add(nextButton);
                 }
             }
